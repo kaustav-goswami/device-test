@@ -54,7 +54,7 @@ int main() {
     system("m5 --addr=0x10010000 exit;");
 
     // fill up the 16 addresses
-    for (int i = SIZE ; i++) {
+    for (int i = 0; i < SIZE ; i++) {
         *((int *) (start_address + i * sizeof(int))) = i;
     }
 

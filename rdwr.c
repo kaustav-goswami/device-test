@@ -48,3 +48,18 @@ int main() {
 
     // Mapping worked. Inform the user where the staring address is located.
     volatile char* start_address = (volatile char *) ptr;
+    printf("Mapping successful at address %#lx\n", (long) start_address);
+
+
+    // start the timing debug here
+    system("m5 --addr=0x10010000 exit;");
+
+    // fill up the 16 addresses
+    for (int i = 0 ; i < SIZE ; i++) {
+        *((int *) (start_address + i * sizeof(int))) = i;
+    }
+
+    // do not close the file
+
+    return 0;
+}

@@ -28,7 +28,7 @@ int main() {
     // with any device you want to test with.
     char* uio_mountpoint = "/dev/uio0";
 
-    int uiofd = open(uio_mountpoint, O_RDWR | O_DIRECT);
+    int uiofd = open(uio_mountpoint, O_RDWR | O_ASYNC);
     if (uiofd < 0) {
         printf("Error mounting! Make sure that the mount point %s is valid\n",
                 uio_mountpoint);
@@ -54,7 +54,7 @@ int main() {
     system("m5 --addr=0x10010000 exit;");
 
     // fill up the 16 addresses
-    for (int i = SIZE ; i++) {
+    for (int i = 0; i < SIZE ; i++) {
         *((int *) (start_address + i * sizeof(int))) = i;
     }
 
